@@ -37,11 +37,20 @@ public class PlayerLook : MonoBehaviour
     public float leanPeekAmount = 0.3f; // Amount to move the camera when leaning
     private float currentLean = 0.0f;
 
+    // Reference to PlayerMovement script
+    public PlayerMovement playerMovement;
+
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         defaultYPos = cameraTransform.localPosition.y;
         initialCameraPosition = cameraTransform.localPosition;
+
+        // Find the PlayerMovement script if it's not assigned
+        if (playerMovement == null)
+        {
+            playerMovement = GetComponent<PlayerMovement>();
+        }
     }
 
     void Update()
@@ -72,8 +81,11 @@ public class PlayerLook : MonoBehaviour
 
     void HandleHeadBobbing()
     {
-        float speed = (Input.GetKey(KeyCode.LeftShift) ? sprintBobSpeed : walkBobSpeed);
-        float amount = (Input.GetKey(KeyCode.LeftShift) ? sprintBobAmount : walkBobAmount);
+        // Determine if the player is sprinting based on stamina
+        bool isSprinting = Input.GetKey(KeyCode.LeftShift) && playerMovement.currentStamina > 0 && !playerMovement.isRecoveringStamina;
+        
+        float speed = isSprinting ? sprintBobSpeed : walkBobSpeed;
+        float amount = isSprinting ? sprintBobAmount : walkBobAmount;
 
         if (Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0)
         {

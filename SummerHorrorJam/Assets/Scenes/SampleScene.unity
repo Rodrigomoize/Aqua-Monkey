@@ -186,6 +186,11 @@ PrefabInstance:
       propertyPath: footstepSound
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 8247579893642938444, guid: 123e3919f6c2b6e4ab7aab47c680bbd8,
+        type: 3}
+      propertyPath: recoverySpeed
+      value: 1.4
+      objectReference: {fileID: 0}
     - target: {fileID: 8670746570964261924, guid: 123e3919f6c2b6e4ab7aab47c680bbd8,
         type: 3}
       propertyPath: m_Name
@@ -195,7 +200,11 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: 149881033157250076, guid: 123e3919f6c2b6e4ab7aab47c680bbd8, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8670746570964261924, guid: 123e3919f6c2b6e4ab7aab47c680bbd8,
+        type: 3}
+      insertIndex: 4
+      addedObject: {fileID: 373748816}
   m_SourcePrefab: {fileID: 100100000, guid: 123e3919f6c2b6e4ab7aab47c680bbd8, type: 3}
 --- !u!1 &231810415
 GameObject:
@@ -302,6 +311,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &373748810 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8670746570964261924, guid: 123e3919f6c2b6e4ab7aab47c680bbd8,
+    type: 3}
+  m_PrefabInstance: {fileID: 153679275}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &373748816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 373748810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d1679588eb54db428cd78cc57799fae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bloodVFXPrefab: {fileID: 8680789963403192022, guid: 7846d9cd86aaa9849b334a3208191b63,
+    type: 3}
+  spawnInterval: 1
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0

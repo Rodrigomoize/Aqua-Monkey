@@ -5,10 +5,12 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private CharacterController controller;
-    private float currentSpeed;
+    public float currentSpeed;
 
     public float speed = 12.0f;
     public float sprintSpeed = 18.0f;
+
+    public float recoverySpeed = 6.0f;
     public float gravity = -9.81f;
     public float jumpHeight = 3.0f;
     public bool canJump = true;
@@ -35,16 +37,27 @@ public class PlayerMovement : MonoBehaviour
 
     public Transform cameraTransform;
 
+    // Stamina system
+    public float maxStamina = 100.0f;
+    public float currentStamina;
+    public float sprintStaminaCost = 10.0f;
+    public float staminaRecoveryRate = 5.0f;
+    public float cooldownDuration = 3.0f;
+    public bool isRecoveringStamina = false;
+
     void Start()
     {
         controller = GetComponent<CharacterController>();
         audioSource = GetComponent<AudioSource>();
-        
+
         // Ensure cameraTransform is set
         if (cameraTransform == null)
         {
             cameraTransform = Camera.main.transform;
         }
+
+        // Initialize stamina
+        currentStamina = maxStamina;
     }
 
     void Update()
@@ -65,7 +78,29 @@ public class PlayerMovement : MonoBehaviour
         Vector3 move = cameraTransform.right * x + cameraTransform.forward * z;
 
         // Sprint functionality
-        currentSpeed = Input.GetKey(KeyCode.LeftShift) ? sprintSpeed : speed;
+        if (Input.GetKey(KeyCode.LeftShift) && currentStamina > 0 && !isRecoveringStamina)
+        {
+            currentSpeed = sprintSpeed;
+            currentStamina -= sprintStaminaCost * Time.deltaTime;
+
+            if (currentStamina <= 0)
+            {
+                StartCoroutine(StaminaCooldown());
+            }
+        }
+        else if(currentStamina <= 0 && isRecoveringStamina)
+        {
+            currentSpeed = recoverySpeed;
+        }
+        else
+        {
+            currentSpeed = speed;
+            if (!isRecoveringStamina && currentStamina < maxStamina)
+            {
+                currentStamina += staminaRecoveryRate * Time.deltaTime;
+                currentStamina = Mathf.Clamp(currentStamina, 0, maxStamina);
+            }
+        }
 
         // Move player
         controller.Move(move * currentSpeed * Time.deltaTime);
@@ -117,5 +152,15 @@ public class PlayerMovement : MonoBehaviour
         }
 
         isPlayingFootstep = false;
+    }
+
+    private IEnumerator StaminaCooldown()
+    {
+        isRecoveringStamina = true;
+        currentSpeed = speed;
+
+        yield return new WaitForSeconds(cooldownDuration);
+
+        isRecoveringStamina = false;
     }
 }
