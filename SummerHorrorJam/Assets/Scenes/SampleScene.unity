@@ -257,7 +257,7 @@ PrefabInstance:
     - {fileID: 149881033157250076, guid: 123e3919f6c2b6e4ab7aab47c680bbd8, type: 3}
     - {fileID: 7538362050377310989, guid: 123e3919f6c2b6e4ab7aab47c680bbd8, type: 3}
     m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 1938008889294999338, guid: 123e3919f6c2b6e4ab7aab47c680bbd8,
+    - targetCorrespondingSourceObject: {fileID: 6295254363392438652, guid: 123e3919f6c2b6e4ab7aab47c680bbd8,
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1784007690}
@@ -285,12 +285,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5df14efa5a3acbc4a9fecdd91e745c9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &153679278 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1938008889294999338, guid: 123e3919f6c2b6e4ab7aab47c680bbd8,
-    type: 3}
-  m_PrefabInstance: {fileID: 153679275}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &167128241 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -2013708376385591173, guid: 0fc958522b8f5b844acc82d2483dd427,
@@ -635,6 +629,12 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1905022580}
   m_SourcePrefab: {fileID: 100100000, guid: 0fc958522b8f5b844acc82d2483dd427, type: 3}
+--- !u!4 &244067025 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6295254363392438652, guid: 123e3919f6c2b6e4ab7aab47c680bbd8,
+    type: 3}
+  m_PrefabInstance: {fileID: 153679275}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &265465077 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2359407630926609535, guid: 0fc958522b8f5b844acc82d2483dd427,
@@ -2178,14 +2178,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1784007689}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -1.82, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 424040521}
   - {fileID: 1610022414}
-  m_Father: {fileID: 153679278}
+  m_Father: {fileID: 244067025}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1813080122 stripped
 GameObject:
