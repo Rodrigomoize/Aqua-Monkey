@@ -74,9 +74,15 @@ public class PlayerLook : MonoBehaviour
 
         yRotation += mouseX;
 
+        // Apply rotation to the cameraTransform for up/down (xRotation)
         cameraTransform.localRotation = Quaternion.Euler(xRotation, 0.0f, currentLean);
+
+        // Apply rotation to the playerBody for left/right (yRotation)
         playerBody.localRotation = Quaternion.Euler(0.0f, yRotation, 0.0f);
-        playerBody.Rotate(Vector3.up * mouseX);
+
+        // Rotate the entire player body for the y-axis rotation
+        // Note: This line may be redundant with the above playerBody.localRotation line
+        // playerBody.Rotate(Vector3.up * mouseX);
     }
 
     void HandleHeadBobbing()
