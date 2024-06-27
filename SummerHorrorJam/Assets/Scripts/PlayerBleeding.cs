@@ -50,7 +50,7 @@ public class PlayerBleeding : MonoBehaviour
         while (isBleeding)
         {
             // Spawn the blood VFX at a specific Y position relative to the player's position
-            Vector3 spawnPosition = new Vector3(transform.position.x, transform.position.y + 1.063327f, transform.position.z);
+            Vector3 spawnPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
             GameObject bloodVFX = Instantiate(bloodVFXPrefab, spawnPosition, Quaternion.identity);
 
             // Ensure the VFX is enabled
