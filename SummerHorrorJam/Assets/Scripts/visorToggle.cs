@@ -2,23 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class nightVisionToggle : MonoBehaviour
+public class visorToggle : MonoBehaviour
 {
 
-    public GameObject nightvision;
+    public GameObject visor;
     public AudioSource audioSource;
     public AudioClip nightVisionOffSound;
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.N))
+        if (Input.GetKeyDown(KeyCode.V))
         {
-            if (nightvision.activeInHierarchy)
+            if (visor.activeInHierarchy)
             {
                 audioSource.PlayOneShot(nightVisionOffSound);
             }
 
-            nightvision.SetActive(!nightvision.activeInHierarchy);
+            visor.SetActive(!visor.activeInHierarchy);
         }
     }
 }
