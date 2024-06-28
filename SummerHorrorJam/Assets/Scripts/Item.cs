@@ -8,6 +8,8 @@ public class Item : MonoBehaviour
 
     public bool isActiveItem;
 
+    public int uses=1;
+
     public PlayerMovement player;
     public Camera playerCamera;
 
@@ -53,15 +55,16 @@ public class Item : MonoBehaviour
     private void UseItem()
     {
         animator.SetTrigger("USE");
+        uses-=1;
         if (allowDestroy)
         {
-            GetDelay();
+            animDelay=GetDelay();
             Invoke("DestroyItem", animDelay);
             allowDestroy = false;
         }
     }
 
-    private void GetDelay()
+    private float GetDelay()
     {
         // Initialize the animation delay based on the animation clip length
         AnimationClip[] clips = animator.runtimeAnimatorController.animationClips;
@@ -73,11 +76,18 @@ public class Item : MonoBehaviour
                 break;
             }
         }
+        return animDelay;
     }
 
     private void DestroyItem()
     {
         print("UsedItem!");
-        Destroy(gameObject); // Destroy the game object
+        if(uses<1){
+            Destroy(gameObject); // Destroy the game object
+        }
+        else{
+            isUsing=false;
+            allowDestroy=true;
+        }
     }
 }
