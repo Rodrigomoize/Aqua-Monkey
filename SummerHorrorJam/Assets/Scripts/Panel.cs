@@ -1,17 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 public class Panel : MonoBehaviour
 {
     public Transform panel;
-    Item targeta;
+    public Item targeta;
     public bool isOn = false;
-    void Start()
-    {
-        targeta = GameObject.Find("Target").GetComponent<Item>();
-    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -19,17 +14,8 @@ public class Panel : MonoBehaviour
         {
             if (targeta.isActiveItem && targeta.isUsing)
             {
-                if (!isOn)
-                {
-                    isOn = true;
-                }
-                if (isOn)
-                {
-                    isOn = false;
-                }
+                isOn = true;
             }
         }
     }
-
 }
-

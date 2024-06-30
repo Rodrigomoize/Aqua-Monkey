@@ -247,6 +247,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 8670746570964261924, guid: 123e3919f6c2b6e4ab7aab47c680bbd8,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 8948187188268501568, guid: 123e3919f6c2b6e4ab7aab47c680bbd8,
         type: 3}
       propertyPath: m_Layer
@@ -358,7 +363,7 @@ BoxCollider:
     m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
-  m_ProvidesContacts: 0
+  m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
@@ -684,7 +689,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panel: {fileID: 544447127}
-  isOn: 0
+  targeta: {fileID: 689564697}
+  isOn: 1
 --- !u!65 &544447129
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -704,7 +710,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2, y: 2, z: 2}
+  m_Size: {x: 2.25, y: 2, z: 2.25}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &557417377
 GameObject:
@@ -824,6 +830,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 244067025}
   m_LocalEulerAnglesHint: {x: 176.63, y: -182.153, z: 2.1809998}
+--- !u!114 &689564697 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8876614596504974266, guid: 27eacb90ecb02954a8a6261cbc29e35b,
+    type: 3}
+  m_PrefabInstance: {fileID: 6769554657834183323}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccce0b154f2b9224592defc1e4eff2da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -2106,11 +2124,11 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1.76, z: 11.37}
+  m_Size: {x: 1, y: 3, z: 11.5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &1695859079
 Transform:
