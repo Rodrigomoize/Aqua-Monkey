@@ -7,6 +7,7 @@ public class Item : MonoBehaviour
 {
 
     public bool isActiveItem;
+    public bool isSpecial;
 
     public int uses=1;
 
@@ -26,7 +27,8 @@ public class Item : MonoBehaviour
     public enum ItemType
     {
         Vodka,
-        Cigarrete
+        Cigarrete,
+        Target
     }
 
     public ItemType thisItemType;
@@ -55,7 +57,10 @@ public class Item : MonoBehaviour
     private void UseItem()
     {
         animator.SetTrigger("USE");
-        uses-=1;
+        if(!isSpecial)
+        {
+            uses -= 1;
+        }
         if (allowDestroy)
         {
             animDelay=GetDelay();
@@ -82,7 +87,7 @@ public class Item : MonoBehaviour
     private void DestroyItem()
     {
         print("UsedItem!");
-        if(uses<1){
+        if(uses<1 && !isSpecial){
             Destroy(gameObject); // Destroy the game object
         }
         else{
