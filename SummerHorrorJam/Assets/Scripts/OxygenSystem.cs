@@ -35,9 +35,8 @@ public class OxygenSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (currentoxigeno > oxigenoMin)
+        if (isConsumingOxigen && currentoxigeno > oxigenoMin)
         {
-            isConsumingOxigen = true;
             if (playerMovement.currentSpeed == playerMovement.speed && playerMovement.isMoving == true && isRecoveringOxigen == false)
             {
                 CurrentConsume = ConsumoOxigenoWalk;

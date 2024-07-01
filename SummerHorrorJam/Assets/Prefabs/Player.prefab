@@ -5068,7 +5068,6 @@ GameObject:
   - component: {fileID: 2856992128145106605}
   - component: {fileID: 7226093951396209595}
   - component: {fileID: 6429300708366101290}
-  - component: {fileID: 705061828224702278}
   - component: {fileID: 6492456382113627068}
   m_Layer: 0
   m_Name: First Person Camera
@@ -5205,21 +5204,6 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
---- !u!114 &705061828224702278
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7576039791313003926}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ba7bb844dddd3244a1b9d6fef09f1f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nightvision: {fileID: 8245958909492767945}
-  audioSource: {fileID: 6492456382113627068}
-  nightVisionOffSound: {fileID: 8300000, guid: fce8c98a9fb72424ebd27edf6834a741, type: 3}
 --- !u!82 &6492456382113627068
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5579,8 +5563,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5df14efa5a3acbc4a9fecdd91e745c9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentSpeed: 0
   speed: 2.8
   sprintSpeed: 5.6
+  recoverySpeed: 6
   gravity: -9.81
   jumpHeight: 1.2
   canJump: 0
@@ -5597,6 +5583,12 @@ MonoBehaviour:
   footstepWalkInterval: 0.8
   footstepRunInterval: 0.4
   cameraTransform: {fileID: 6295254363392438652}
+  maxStamina: 100
+  currentStamina: 0
+  sprintStaminaCost: 10
+  staminaRecoveryRate: 5
+  cooldownDuration: 3
+  isRecoveringStamina: 0
 --- !u!114 &7462855008142411846
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5625,6 +5617,7 @@ MonoBehaviour:
   leanAngle: 15
   leanSpeed: 6
   leanPeekAmount: 0.7
+  playerMovement: {fileID: 0}
 --- !u!82 &5975748740311859816
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5881,7 +5874,7 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: d17c887d1a45fc14294934e5f5dbe237, type: 3}
 --- !u!4 &2021691954984302616 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 2371716716298959896, guid: d17c887d1a45fc14294934e5f5dbe237,
+  m_CorrespondingSourceObject: {fileID: 2177925399464631161, guid: d17c887d1a45fc14294934e5f5dbe237,
     type: 3}
   m_PrefabInstance: {fileID: 4387765900095276032}
   m_PrefabAsset: {fileID: 0}
