@@ -11,6 +11,9 @@ public class UnderwaterEffects : MonoBehaviour
     public GameObject bubbles;
     public GameObject visor;
 
+    public Transform waterPlane; // Reference to the water plane
+    public Transform referenceObject; // Reference to the player's head or another reference point
+
     public bool underwater;
 
     void Start()
@@ -18,26 +21,43 @@ public class UnderwaterEffects : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
-    private void OnTriggerEnter(Collider other){
+    void Update()
+    {
+        CheckUnderwaterStatus();
+    }
+
+    private void CheckUnderwaterStatus()
+    {
+        if (referenceObject.position.y < waterPlane.position.y && !underwater)
+        {
+            EnterWater();
+        }
+        else if (referenceObject.position.y >= waterPlane.position.y && underwater)
+        {
+            ExitWater();
+        }
+    }
+
+    private void EnterWater()
+    {
         //waterFx.gameObject.SetActive(true);
-        underwater=true;
-        RenderSettings.fog=true;
-        oxigen.isConsumingOxigen=true;
+        underwater = true;
+        RenderSettings.fog = true;
+        oxigen.isConsumingOxigen = true;
         visor.gameObject.SetActive(true);
         bubbles.gameObject.SetActive(true);
         audioSource.PlayOneShot(breathingUnderwater);
-        audioSource.mute=false;
-
-
+        audioSource.mute = false;
     }
 
-    private void OnTriggerExit(Collider other){
+    private void ExitWater()
+    {
         //waterFx.gameObject.SetActive(false);
-        underwater=false;
-        RenderSettings.fog=false;
-        oxigen.isConsumingOxigen=false;
+        underwater = false;
+        RenderSettings.fog = false;
+        oxigen.isConsumingOxigen = false;
         visor.gameObject.SetActive(false);
         bubbles.gameObject.SetActive(false);
-        audioSource.mute=true;
+        audioSource.mute = true;
     }
 }
