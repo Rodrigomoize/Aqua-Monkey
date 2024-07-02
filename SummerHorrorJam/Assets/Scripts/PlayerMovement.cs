@@ -28,9 +28,6 @@ public class PlayerMovement : MonoBehaviour
     // Movement threshold
     public float movementThreshold = 0.01f;
 
-    // Footstep sound
-    public AudioSource audioSource;
-    public AudioClip footstepSound;
     public float footstepWalkInterval = 0.8f;
     public float footstepRunInterval = 0.4f;
     private bool isPlayingFootstep = false;
@@ -48,7 +45,6 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         controller = GetComponent<CharacterController>();
-        audioSource = GetComponent<AudioSource>();
 
         // Ensure cameraTransform is set
         if (cameraTransform == null)
@@ -140,10 +136,9 @@ public class PlayerMovement : MonoBehaviour
         while (isMoving)
         {
             // Play footstep sound with slight pitch and volume variation
-            audioSource.pitch = Random.Range(0.8f, 1.2f);
-            audioSource.volume = Random.Range(0.65f, 0.85f);
-            audioSource.PlayOneShot(footstepSound);
-
+            AudioManager.Instance.audioSourcePlayerMovement.pitch = Random.Range(0.8f, 1.2f);
+            AudioManager.Instance.audioSourcePlayerMovement.volume = Random.Range(0.25f, 0.35f);
+            AudioManager.Instance.audioSourcePlayerMovement.Play();
             // Determine the interval based on current speed
             float footstepInterval = (currentSpeed == sprintSpeed) ? footstepRunInterval : footstepWalkInterval;
 

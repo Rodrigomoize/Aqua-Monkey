@@ -56,6 +56,7 @@ public class Item : MonoBehaviour
 
     private void UseItem()
     {
+        AudioManager.Instance.PlayUseItemSound(thisItemType);
         animator.SetTrigger("USE");
         if(!isSpecial)
         {

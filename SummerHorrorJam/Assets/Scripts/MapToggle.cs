@@ -4,10 +4,7 @@ using UnityEngine;
 
 public class MapToggle : MonoBehaviour
 {
-
     public GameObject map;
-    public AudioSource audioSource;
-    public AudioClip mapOffSound;
 
     private void Update()
     {
@@ -15,7 +12,10 @@ public class MapToggle : MonoBehaviour
         {
             if (map.activeInHierarchy)
             {
-                audioSource.PlayOneShot(mapOffSound);
+                AudioManager.Instance.mapOffSound.Play();
+            }
+            else{
+                AudioManager.Instance.mapOnSound.Play();
             }
 
             map.SetActive(!map.activeInHierarchy);
