@@ -13,7 +13,7 @@ public class AudioManager : MonoBehaviour
     public GameObject AudioAboveWater;
 
     public AudioSource audioSourcePlayerMovement;
-    public AudioSource cigarreteUsingSound;
+    public AudioSource cigaretteUsingSound;
     public AudioSource vodkaUsingSound;
     public AudioSource targetUsingSound;
     public AudioSource mapOnSound;
@@ -47,9 +47,9 @@ public class AudioManager : MonoBehaviour
     public void PlayUseItemSound(Item.ItemType item)
     {
         switch (item){
-            case Item.ItemType.Cigarrete:
-                cigarreteUsingSound.Play();
-                break;
+            //case Item.ItemType.Cigarette:
+                //cigaretteUsingSound.Play();
+                //break;
             case Item.ItemType.Vodka:
                 vodkaUsingSound.Play();
                 break;
