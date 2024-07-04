@@ -6,7 +6,7 @@ public class PlayerBleeding : MonoBehaviour
     public GameObject bloodVFXPrefab;  // Assign the blood VFX prefab in the inspector
     public float spawnInterval = 0.5f; // Time interval between VFX spawns
 
-    private bool isBleeding = false;
+    public bool isBleeding = false;
     private Coroutine bleedingCoroutine;
 
     void Update()
