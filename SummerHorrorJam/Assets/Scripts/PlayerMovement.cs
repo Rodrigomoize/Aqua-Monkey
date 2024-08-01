@@ -42,6 +42,12 @@ public class PlayerMovement : MonoBehaviour
     public float cooldownDuration = 3.0f;
     public bool isRecoveringStamina = false;
 
+    // Inventory and Trapping system
+    public GameObject trapPrefab; // Prefab de la trampa
+    public Transform trapSpawnPoint; // Punto de generación de la trampa
+
+    public int trapInventory = 3; // Cantidad de trampas disponibles para colocar
+
     void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -84,7 +90,7 @@ public class PlayerMovement : MonoBehaviour
                 StartCoroutine(StaminaCooldown());
             }
         }
-        else if(currentStamina <= 0 && isRecoveringStamina)
+        else if (currentStamina <= 0 && isRecoveringStamina)
         {
             currentSpeed = recoverySpeed;
         }
@@ -127,6 +133,12 @@ public class PlayerMovement : MonoBehaviour
             isMoving = false;
         }
         lastPosition = transform.position;
+
+        // Place trap functionality
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            PlaceTrap();
+        }
     }
 
     private IEnumerator PlayFootsteps()
@@ -157,5 +169,29 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(cooldownDuration);
 
         isRecoveringStamina = false;
+    }
+
+    private void PlaceTrap()
+    {
+        if (trapInventory > 0) // Check if there are traps available in the inventory
+        {
+            // Instanciar la trampa en el punto de generación
+            Instantiate(trapPrefab, trapSpawnPoint.position, Quaternion.identity);
+
+            // Reduce the trap count from the inventory
+            trapInventory--;
+
+            Debug.Log("Trampa colocada. Trampas restantes: " + trapInventory);
+        }
+        else
+        {
+            Debug.Log("No hay trampas disponibles para colocar.");
+        }
+    }
+
+    public void AddTrapToInventory(int count)
+    {
+        trapInventory += count;
+        Debug.Log("Trampas añadidas al inventario. Total trampas: " + trapInventory);
     }
 }
