@@ -27,7 +27,8 @@ public class Item : MonoBehaviour
     {
         Vodka,
         Cigarette,
-        Target
+        Target,
+        Trap
     }
 
     public ItemType thisItemType;
@@ -47,6 +48,9 @@ public class Item : MonoBehaviour
                 canBeUsedUnderwater = false;
                 break;
             case ItemType.Target:
+                canBeUsedUnderwater = true;
+                break;
+            case ItemType.Trap:
                 canBeUsedUnderwater = true;
                 break;
         }
