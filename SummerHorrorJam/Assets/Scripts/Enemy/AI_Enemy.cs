@@ -54,7 +54,7 @@ public class NewBehaviourScript : MonoBehaviour
         float maxDistance = distanciaObjetivo;
 
         // Cast multiple rays in a fan shape in front of the enemy
-        for (float angle = -45; angle <= 30; angle += 10)
+        for (float angle = -30; angle <= 30; angle += 10)
         {
             Vector3 rayDirection = Quaternion.Euler(0, angle, 0) * transform.forward;
             Ray ray = new Ray(transform.position, rayDirection);
