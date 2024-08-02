@@ -52,6 +52,11 @@ public class ItemManager : MonoBehaviour
         {
             SwitchACtiveSlot(2);
         }
+
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            SwitchACtiveSlot(3);
+        }
     }
 
     public void PickUpItem(GameObject pickedUpItem)

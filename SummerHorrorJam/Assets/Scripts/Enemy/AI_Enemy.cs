@@ -21,6 +21,9 @@ public class NewBehaviourScript : MonoBehaviour
     public bool playerSpotted;
     private Coroutine resetPlayerSpottedCoroutine;
 
+    private bool isImmobilized = false; // Estado para verificar si el enemigo está inmovilizado
+    private float immobilizeEndTime = 0f; // Tiempo hasta el que el enemigo estará inmovilizado
+
 
     void Start()
     {
@@ -30,6 +33,23 @@ public class NewBehaviourScript : MonoBehaviour
 
     void Update()
     {
+
+        if (isImmobilized)
+        {
+            // Revisar si el tiempo de inmovilización ha terminado
+            if (Time.time >= immobilizeEndTime)
+            {
+                isImmobilized = false;
+                malomalote.isStopped = false; // Reanudar movimiento del NavMeshAgent
+                Debug.Log("Enemigo se ha recuperado de la inmovilización.");
+            }
+            else
+            {
+                // Permanecer inmovilizado
+                return; // Salir de Update mientras esté inmovilizado
+            }
+        }
+
         malomalote.speed = velocidad;
 
         lookForPlayer();
@@ -140,6 +160,19 @@ public class NewBehaviourScript : MonoBehaviour
 
         objetivoAnterior = objetivoActual;
         malomalote.SetDestination(objetivoActual.position);
+    }
+
+    public void Immobilize(float duration)
+    {
+        if (!isImmobilized)
+        {
+            isImmobilized = true;
+            immobilizeEndTime = Time.time + duration;
+            malomalote.isStopped = true; // Detener el movimiento del NavMeshAgent
+
+            // Aquí puedes añadir efectos visuales o de sonido
+            Debug.Log("Enemigo inmovilizado por " + duration + " segundos.");
+        }
     }
 
 }

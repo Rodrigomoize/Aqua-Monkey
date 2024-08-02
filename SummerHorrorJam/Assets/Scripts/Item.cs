@@ -51,7 +51,8 @@ public class Item : MonoBehaviour
                 canBeUsedUnderwater = true;
                 break;
             case ItemType.Trap:
-                canBeUsedUnderwater = true;
+                uses = 1;
+                canBeUsedUnderwater = false;
                 break;
         }
 
