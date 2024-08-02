@@ -6,11 +6,9 @@ public class Trap : MonoBehaviour
 {
     public int immobilizeDuration = 5;
     public GameObject trampa;
-    public GameObject enemy;
-    public ParticleSystem trapParticles; 
+    public ParticleSystem trapParticles;
     public AudioSource trapSound;
     public bool active = true;
-
 
     void Start()
     {
@@ -19,16 +17,12 @@ public class Trap : MonoBehaviour
             trapParticles.Stop(); // Detener las partículas al inicio
         }
     }
-    void Update()
-    {
-        
-    }
+
     private void OnTriggerEnter(Collider other)
     {
-
-        if (other.gameObject.tag == ("Enemy"))
+        if (other.CompareTag("Enemy")) // Usar CompareTag para mejorar rendimiento
         {
-           if (active)
+            if (active)
             {
                 trampa.SetActive(true);
                 Debug.Log("Trampa activada por el enemigo.");
@@ -36,7 +30,6 @@ public class Trap : MonoBehaviour
                 StartCoroutine(ImmobilizeEnemy(other.gameObject)); // Iniciar el proceso de inmovilización
                 active = false;
             }
-            
         }
     }
 
@@ -73,11 +66,5 @@ public class Trap : MonoBehaviour
         {
             Debug.LogWarning("No se encontró el script de enemigo en el objeto colisionado.");
         }
-
-
     }
 }
-    
-
-
-

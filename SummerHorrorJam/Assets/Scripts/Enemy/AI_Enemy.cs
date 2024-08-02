@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class NewBehaviourScript : MonoBehaviour
 {
-    public Transform[] objetivos; // Array of all the objectives the enemy can go to
+    public Transform[] objetivos; // Array de todos los objetivos que el enemigo puede visitar
     public Transform player;
     public float velocidad;
     public float velocidadRoaming;
@@ -24,7 +24,6 @@ public class NewBehaviourScript : MonoBehaviour
     private bool isImmobilized = false; // Estado para verificar si el enemigo está inmovilizado
     private float immobilizeEndTime = 0f; // Tiempo hasta el que el enemigo estará inmovilizado
 
-
     void Start()
     {
         // Start by defining the first objective to go to
@@ -33,7 +32,6 @@ public class NewBehaviourScript : MonoBehaviour
 
     void Update()
     {
-
         if (isImmobilized)
         {
             // Revisar si el tiempo de inmovilización ha terminado
@@ -53,7 +51,6 @@ public class NewBehaviourScript : MonoBehaviour
         malomalote.speed = velocidad;
 
         lookForPlayer();
-
 
         if (playerSpotted)
         {
@@ -84,7 +81,7 @@ public class NewBehaviourScript : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit, maxDistance))
             {
-                if (hit.transform.gameObject.tag == "Player")
+                if (hit.transform.CompareTag("Player")) // Usar CompareTag para mejorar rendimiento
                 {
                     playerDetected = true;
                     break;
@@ -136,8 +133,8 @@ public class NewBehaviourScript : MonoBehaviour
         }
         if (objetivoAlcanzado)
         {
-            CambiarObjetivo(); // Call the function that changes the objective
-            objetivoAlcanzado = false; // Set to false so it doesn't loop
+            CambiarObjetivo(); // Llamar a la función que cambia el objetivo
+            objetivoAlcanzado = false; // Establecer en falso para que no haga loop
         }
         else
         {
@@ -156,7 +153,7 @@ public class NewBehaviourScript : MonoBehaviour
         do
         {
             objetivoActual = objetivos[Random.Range(0, objetivos.Length)];
-        } while (objetivoActual == objetivoAnterior); // Do while, the eternal forgotten loop
+        } while (objetivoActual == objetivoAnterior); // Do while, el ciclo eterno olvidado
 
         objetivoAnterior = objetivoActual;
         malomalote.SetDestination(objetivoActual.position);
@@ -174,5 +171,4 @@ public class NewBehaviourScript : MonoBehaviour
             Debug.Log("Enemigo inmovilizado por " + duration + " segundos.");
         }
     }
-
 }
