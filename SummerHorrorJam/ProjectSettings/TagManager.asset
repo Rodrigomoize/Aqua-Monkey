@@ -6,6 +6,7 @@ TagManager:
   tags:
   - WaterCheck
   - PlayerInteractionZone
+  - Enemy
   layers:
   - Default
   - TransparentFX
