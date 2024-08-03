@@ -11,8 +11,9 @@ public class ItemManager : MonoBehaviour
     public static ItemManager Instance { get; set; }
 
     public List<GameObject> itemSlots;
-
     public GameObject activeItemSlot;
+    public float dropDistance = 2f; // Distancia para colocar el objeto frente al jugador
+    public float dropHeightOffset = 1f; // Desplazamiento vertical para que caiga correctamente
 
     private void Awake()
     {
@@ -144,12 +145,13 @@ public class ItemManager : MonoBehaviour
             if (itemRigidbody != null)
             {
                 itemRigidbody.isKinematic = false;
-                itemRigidbody.AddForce(Vector3.down * 2f, ForceMode.Impulse);
             }
 
             // Position the item in front of the player
             Transform playerTransform = Camera.main.transform;
-            itemToDrop.transform.position = playerTransform.position + playerTransform.forward;
+            Vector3 dropPosition = playerTransform.position + playerTransform.forward * dropDistance;
+            dropPosition.y = playerTransform.position.y - dropHeightOffset; // Adjust for ground level
+            itemToDrop.transform.position = dropPosition;
 
             // Add a slight forward force
             if (itemRigidbody != null)

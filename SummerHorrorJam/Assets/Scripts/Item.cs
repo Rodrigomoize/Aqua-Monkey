@@ -72,7 +72,7 @@ public class Item : MonoBehaviour
             }
             else
             {
-                Debug.LogWarning("'Underwater' child GameObject not found under 'WaterSystem'.");
+                Debug.LogWarning("'Underwater' child GameObject not found under 'Water_System'.");
             }
         }
         else
