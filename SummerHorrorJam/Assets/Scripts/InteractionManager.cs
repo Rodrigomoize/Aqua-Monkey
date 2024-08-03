@@ -58,5 +58,11 @@ public class InteractionManager : MonoBehaviour
                 hoveredItem = null;
             }
         }
+
+        // Drop the item if 'G' is pressed
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            ItemManager.Instance.DropActiveItem();
+        }
     }
 }
